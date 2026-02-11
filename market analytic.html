@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morocco Electric Scooter Market Analysis Brahim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F7F2; /* Warm Neutral Background */
+            color: #333333;
+        }
+
+        /* Chart Container Styling - Mandatory Strictness */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9CA3AF;
+        }
+
+        /* Interactive Elements */
+        .interactive-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .active-tab {
+            border-bottom: 2px solid #2D6A4F;
+            color: #2D6A4F;
+            font-weight: 600;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Earth & Eco Tech -->
+    <!-- Background: #F9F7F2 (Warm Sand), Text: #333333 (Charcoal), Accent 1: #2D6A4F (Deep Green), Accent 2: #E07A5F (Terra Cotta), UI White: #FFFFFF -->
+
+    <!-- Application Structure Plan: 
+         1. Header: Quick context and title.
+         2. Executive Dashboard (KPIs): Immediate high-level metrics (Growth, Price, Hubs) for quick digestion.
+         3. Competitive Landscape (Tabs + Chart): Comparison of major players (Xiaomi vs Ninebot vs Clones) using a Donut chart and clickable info cards. Best for understanding market dominance.
+         4. Pricing Intelligence (Interactive Chart): Bar chart of price brackets. User clicks a bracket to see "What you get for this money". Connects cost to value.
+         5. Technical Specs & Consumer Preferences (Scatter + Radar): Correlation between Price/Range and a Radar chart comparing "Ideal Consumer" vs "Market Reality".
+         6. Strategic Analysis (SWOT Grid): Interactive grid to explore strategic positioning without overwhelming text.
+         7. Distribution Flow: Simple visual process map using HTML/CSS.
+         Rationale: Logic flows from "What is the market?" -> "Who is playing?" -> "How much does it cost?" -> "What do I get?" -> "What is the strategy?".
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. Market Share -> Donut Chart (Chart.js) -> Compare -> Shows dominance of Xiaomi clearly.
+         2. Price Brackets -> Bar Chart (Chart.js) -> Inform/Compare -> Visualizes the "Sweet Spot" (4k-6k MAD).
+         3. Price vs Range -> Scatter Plot (Chart.js) -> Relationship -> Correlates investment with performance capability.
+         4. Spec Comparison -> Radar Chart (Chart.js) -> Compare -> Shows trade-offs between speed, weight, and range.
+         5. SWOT -> Interactive Grid (HTML/JS) -> Organize -> Clean way to present text-heavy analysis.
+         6. Distribution -> Flexbox Flow (HTML/CSS) -> Organize -> Visualizes supply chain steps.
+         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+</head>
+<body class="antialiased">
+
+    <!-- Navigation / Header -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-2">🛴</span>
+                    <span class="font-bold text-xl text-gray-800 tracking-tight">E-Scooter Insights <span class="text-[#2D6A4F]">Morocco</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="scrollToSection('overview')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Overview</button>
+                    <button onclick="scrollToSection('competition')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Competition</button>
+                    <button onclick="scrollToSection('pricing')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Pricing</button>
+                    <button onclick="scrollToSection('strategy')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Strategy</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- SECTION 1: EXECUTIVE DASHBOARD -->
+        <section id="overview" class="scroll-mt-24">
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-900">Market Executive Summary</h1>
+                <p class="mt-2 text-gray-600 max-w-3xl">
+                    The Moroccan electric scooter market has transitioned from a niche hobbyist sector to a critical component of urban micro-mobility. Driven by rising fuel costs and traffic congestion in hubs like Casablanca and Rabat, the market is seeing double-digit year-over-year growth.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- KPI Card 1 -->
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-[#2D6A4F]">
+                    <div class="text-sm font-medium text-gray-500 uppercase">YoY Growth</div>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-3xl font-semibold text-gray-900">~15%</span>
+                        <span class="ml-2 text-sm font-medium text-green-600">▲ Rising</span>
+                    </div>
+                    <div class="mt-1 text-xs text-gray-500">Estimated annual adoption rate</div>
+                </div>
+                <!-- KPI Card 2 -->
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-[#E07A5F]">
+                    <div class="text-sm font-medium text-gray-500 uppercase">Avg. Retail Price</div>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-3xl font-semibold text-gray-900">4,500</span>
+                        <span class="ml-2 text-sm font-medium text-gray-500">MAD</span>
+                    </div>
+                    <div class="mt-1 text-xs text-gray-500">Mid-range segment dominance</div>
+                </div>
+                <!-- KPI Card 3 -->
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-[#2D6A4F]">
+                    <div class="text-sm font-medium text-gray-500 uppercase">Market Leader</div>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-3xl font-semibold text-gray-900">Xiaomi</span>
+                    </div>
+                    <div class="mt-1 text-xs text-gray-500">~45-50% Market Share</div>
+                </div>
+                <!-- KPI Card 4 -->
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-gray-400">
+                    <div class="text-sm font-medium text-gray-500 uppercase">Primary Hub</div>
+                    <div class="mt-2 flex items-baseline">
+                        <span class="text-3xl font-semibold text-gray-900">Casablanca</span>
+                    </div>
+                    <div class="mt-1 text-xs text-gray-500">Highest adoption density</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: COMPETITIVE LANDSCAPE -->
+        <section id="competition" class="scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Competitive Landscape & Key Players</h2>
+                <p class="mt-2 text-gray-600">
+                    The market is an oligopoly dominated by international brands, specifically Xiaomi, which sets the standard for specifications and pricing.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Chart Area -->
+                <div class="bg-white rounded-lg shadow p-6 lg:col-span-1 flex flex-col justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Market Share Estimation</h3>
+                    <div class="chart-container">
+                        <canvas id="marketShareChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-4">Based on import volume & retailer inventory (Est.)</p>
+                </div>
+
+                <!-- Interactive Profiles -->
+                <div class="lg:col-span-2 space-y-4">
+                    <!-- Player 1 -->
+                    <div class="interactive-card bg-white rounded-lg shadow p-6 border border-gray-100" onclick="toggleDetails('xiaomi-details')">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-xl">🏆</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Xiaomi (Mi)</h3>
+                                    <p class="text-sm text-gray-500">The Market Definer</p>
+                                </div>
+                            </div>
+                            <span class="text-[#2D6A4F] text-sm font-semibold">Click for Details ▼</span>
+                        </div>
+                        <div id="xiaomi-details" class="hidden mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 space-y-2">
+                            <p><strong>Position:</strong> Absolute Market Leader.</p>
+                            <p><strong>Key Models:</strong> Mi Electric Scooter 3, Pro 2, Essential.</p>
+                            <p><strong>Target:</strong> Mass market commuters. Parts are widely available in Derb Ghallef and local repair shops.</p>
+                        </div>
+                    </div>
+
+                    <!-- Player 2 -->
+                    <div class="interactive-card bg-white rounded-lg shadow p-6 border border-gray-100" onclick="toggleDetails('ninebot-details')">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">💎</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">Segway-Ninebot</h3>
+                                    <p class="text-sm text-gray-500">The Premium Challenger</p>
+                                </div>
+                            </div>
+                            <span class="text-[#2D6A4F] text-sm font-semibold">Click for Details ▼</span>
+                        </div>
+                        <div id="ninebot-details" class="hidden mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 space-y-2">
+                            <p><strong>Position:</strong> Premium / Durable Choice.</p>
+                            <p><strong>Key Models:</strong> Max G30, F-Series (F25/F40).</p>
+                            <p><strong>Differentiation:</strong> 10-inch tubeless tires (better for Moroccan roads), Rear-wheel drive, superior build quality.</p>
+                        </div>
+                    </div>
+
+                    <!-- Player 3 -->
+                    <div class="interactive-card bg-white rounded-lg shadow p-6 border border-gray-100" onclick="toggleDetails('clones-details')">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-xl">📉</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900">White-Label / Clones</h3>
+                                    <p class="text-sm text-gray-500">Budget Entry Points</p>
+                                </div>
+                            </div>
+                            <span class="text-[#2D6A4F] text-sm font-semibold">Click for Details ▼</span>
+                        </div>
+                        <div id="clones-details" class="hidden mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 space-y-2">
+                            <p><strong>Position:</strong> Low-cost alternatives (often under 3,000 MAD).</p>
+                            <p><strong>Models:</strong> Generic "M365 Copy" designs.</p>
+                            <p><strong>Risk:</strong> Lower battery quality (unknown cells), lack of warranty, often sold on informal markets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PRICING & PRODUCT INTELLIGENCE -->
+        <section id="pricing" class="scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Pricing & Performance Analysis</h2>
+                <p class="mt-2 text-gray-600">
+                    Understanding the correlation between price (MAD) and capability (Range/Power). The "Sweet Spot" for Moroccan consumers lies between 4,000 and 6,000 MAD.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Price Brackets Bar Chart -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">Price Segmentation (MAD)</h3>
+                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">Click bars for context</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="priceBracketChart"></canvas>
+                    </div>
+                    <div id="price-context" class="mt-4 p-4 bg-gray-50 rounded text-sm text-gray-700 min-h-[80px]">
+                        Click on a price bar to see typical specifications and user segments for that bracket.
+                    </div>
+                </div>
+
+                <!-- Price vs Range Scatter -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Value Map: Price vs. Range</h3>
+                    <div class="chart-container">
+                        <canvas id="scatterChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Highlights diminishing returns above 8,000 MAD for pure range.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: TECHNICAL & CONSUMER PREFERENCE -->
+        <section id="specs" class="scroll-mt-24">
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900">Technical Deep Dive & Consumer Profile</h2>
+                    <p class="mt-2 text-gray-600">
+                        Comparing the "Ideal" Moroccan Commuter Scooter against market realities.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 p-6 gap-8">
+                    <!-- Radar Chart -->
+                    <div>
+                         <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Feature Priorities</h3>
+                        <div class="chart-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Tech Spec Insight List -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-gray-800">Key Specification Drivers</h3>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center text-xl">🔋</div>
+                            <div class="ml-4">
+                                <h4 class="text-md font-medium text-gray-900">Battery & Voltage</h4>
+                                <p class="text-sm text-gray-600">36V is standard, but <strong>48V systems</strong> are gaining traction for better hill climbing in cities like Tangier. Lithium-ion 18650 cells are ubiquitous.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-lg flex items-center justify-center text-xl">🛞</div>
+                            <div class="ml-4">
+                                <h4 class="text-md font-medium text-gray-900">Tire Technology</h4>
+                                <p class="text-sm text-gray-600"><strong>10-inch Tubeless</strong> tires are becoming the preferred choice over standard 8.5-inch tubed tires to combat rougher road textures and reduce puncture frequency.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center text-xl">⚡</div>
+                            <div class="ml-4">
+                                <h4 class="text-md font-medium text-gray-900">Motor Power</h4>
+                                <p class="text-sm text-gray-600"><strong>300W-350W nominal</strong> is the new baseline (up from 250W) to handle adult weight + backpacks on inclines without losing speed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: STRATEGIC SWOT ANALYSIS -->
+        <section id="strategy" class="scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Strategic SWOT Analysis</h2>
+                <p class="mt-2 text-gray-600">Internal and external factors shaping the future of the market.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Strengths -->
+                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-green-500">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl mr-2">💪</span>
+                        <h3 class="text-lg font-bold text-gray-900">Strengths</h3>
+                    </div>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+                        <li>Low operating cost vs combustion mopeds.</li>
+                        <li>High adaptability to heavy traffic in Casa/Rabat.</li>
+                        <li>Mature spare parts availability (Xiaomi ecosystem).</li>
+                    </ul>
+                </div>
+
+                <!-- Weaknesses -->
+                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-yellow-500">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl mr-2">⚠️</span>
+                        <h3 class="text-lg font-bold text-gray-900">Weaknesses</h3>
+                    </div>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+                        <li>Battery lifespan degradation in high heat.</li>
+                        <li>Lack of dedicated service centers outside major hubs.</li>
+                        <li>Safety concerns on shared roadways.</li>
+                    </ul>
+                </div>
+
+                <!-- Opportunities -->
+                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl mr-2">🚀</span>
+                        <h3 class="text-lg font-bold text-gray-900">Opportunities</h3>
+                    </div>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+                        <li>B2B Logistics: Last-mile delivery fleets.</li>
+                        <li>Eco-tourism rentals in Marrakech/Agadir.</li>
+                        <li>Integration with public transit (tramway stations).</li>
+                    </ul>
+                </div>
+
+                <!-- Threats -->
+                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-red-500">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl mr-2">🛡️</span>
+                        <h3 class="text-lg font-bold text-gray-900">Threats</h3>
+                    </div>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+                        <li>Potential strict regulation/licensing enforcement.</li>
+                        <li>Import tariff increases on batteries.</li>
+                        <li>Infrastructure safety limitations.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: DISTRIBUTION FLOW -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-gray-900 mb-6">Supply Chain & Distribution Flow</h2>
+            <div class="bg-white p-8 rounded-lg shadow flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center">
+                
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-3xl mb-2">🇨🇳</div>
+                    <span class="font-bold text-gray-800">Manufacturing</span>
+                    <span class="text-xs text-gray-500">Shenzhen/China</span>
+                </div>
+
+                <div class="text-gray-400 text-2xl hidden md:block">➔</div>
+                <div class="text-gray-400 text-2xl md:hidden">⬇</div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-3xl mb-2">🚢</div>
+                    <span class="font-bold text-gray-800">Import</span>
+                    <span class="text-xs text-gray-500">Casa Port / Tangier</span>
+                </div>
+
+                <div class="text-gray-400 text-2xl hidden md:block">➔</div>
+                <div class="text-gray-400 text-2xl md:hidden">⬇</div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-3xl mb-2">🏢</div>
+                    <span class="font-bold text-gray-800">Distributors</span>
+                    <span class="text-xs text-gray-500">Marjane / ElectroPlanet / Derb Ghallef</span>
+                </div>
+
+                <div class="text-gray-400 text-2xl hidden md:block">➔</div>
+                <div class="text-gray-400 text-2xl md:hidden">⬇</div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-[#2D6A4F] text-white rounded-full flex items-center justify-center text-3xl mb-2">👤</div>
+                    <span class="font-bold text-gray-800">End User</span>
+                    <span class="text-xs text-gray-500">Last Mile Commuter</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-200 pt-8 text-center text-gray-500 text-sm">
+            <p><strong>Source:</strong> Comprehensive Market Analysis of the Electric Scooter Industry in Morocco (2024-2025 Data).</p>
+            <p class="mt-2">Currency: MAD (Moroccan Dirham). All prices estimated based on retail averages.</p>
+            <p class="mt-4 mb-8">© 2025 Market Intelligence Unit.</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Data Store
+        const marketData = {
+            brands: ['Xiaomi', 'Segway-Ninebot', 'Generic/Clones', 'High-End (Dualtron etc)', 'Other'],
+            share: [48, 22, 20, 5, 5],
+            priceBrackets: {
+                labels: ['Budget (<3k)', 'Mid-Range (3k-6k)', 'Premium (6k-10k)', 'High-Perf (>10k)'],
+                data: [25, 55, 15, 5],
+                context: [
+                    "<strong>Budget Segment (<3000 MAD):</strong> Mostly generic clones or used older Xiaomi models. Target: Students. Risk: Low durability.",
+                    "<strong>Mid-Range (3000-6000 MAD):</strong> The 'Sweet Spot'. Includes Xiaomi Mi 3, Essential, and Ninebot F-Series. Best balance of price/performance.",
+                    "<strong>Premium (6000-10000 MAD):</strong> Ninebot G30 Max territory. Long range (65km), tubeless tires. Target: Serious daily commuters.",
+                    "<strong>High-Performance (>10000 MAD):</strong> Dual motors, suspension, high speeds (50km/h+). Brands like Dualtron. Niche enthusiast market."
+                ]
+            },
+            scatter: [
+                {x: 2800, y: 20}, {x: 3500, y: 30}, {x: 4200, y: 30}, {x: 5500, y: 45}, 
+                {x: 6500, y: 40}, {x: 8500, y: 65}, {x: 12000, y: 70}, {x: 15000, y: 90}
+            ]
+        };
+
+        // --- Chart Configuration ---
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#4B5563';
+
+        // 1. Market Share Chart (Donut)
+        const ctxShare = document.getElementById('marketShareChart').getContext('2d');
+        const shareChart = new Chart(ctxShare, {
+            type: 'doughnut',
+            data: {
+                labels: marketData.brands,
+                datasets: [{
+                    data: marketData.share,
+                    backgroundColor: ['#E07A5F', '#3D405B', '#F4F1DE', '#81B29A', '#D1D5DB'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12 } },
+                    tooltip: {
+                         callbacks: {
+                            title: (tooltipItems) => {
+                                // Multiline handling
+                                const item = tooltipItems[0];
+                                const label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Price Bracket Chart (Bar) - Interactive
+        const ctxPrice = document.getElementById('priceBracketChart').getContext('2d');
+        const priceChart = new Chart(ctxPrice, {
+            type: 'bar',
+            data: {
+                labels: marketData.priceBrackets.labels.map(l => l.match(/.{1,16}/g) || [l]), // Split long labels
+                datasets: [{
+                    label: 'Market Volume Estimate (%)',
+                    data: marketData.priceBrackets.data,
+                    backgroundColor: ['#D1D5DB', '#2D6A4F', '#3D405B', '#E07A5F'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, grid: { display: false } },
+                    x: { grid: { display: false } }
+                },
+                onClick: (e, activeElements) => {
+                    if (activeElements.length > 0) {
+                        const index = activeElements[0].index;
+                        const contextBox = document.getElementById('price-context');
+                        contextBox.innerHTML = marketData.priceBrackets.context[index];
+                        contextBox.classList.add('bg-green-50');
+                        setTimeout(() => contextBox.classList.remove('bg-green-50'), 300);
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                         callbacks: {
+                            title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                const label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. Scatter Chart (Price vs Range)
+        const ctxScatter = document.getElementById('scatterChart').getContext('2d');
+        const scatterChart = new Chart(ctxScatter, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Scooter Models',
+                    data: marketData.scatter,
+                    backgroundColor: '#2D6A4F'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { 
+                        type: 'linear', 
+                        position: 'bottom', 
+                        title: { display: true, text: 'Price (MAD)' },
+                        grid: { color: '#F3F4F6' }
+                    },
+                    y: { 
+                        title: { display: true, text: 'Range (KM)' },
+                        grid: { color: '#F3F4F6' }
+                    }
+                },
+                 plugins: {
+                    tooltip: {
+                         callbacks: {
+                            label: (context) => `Price: ${context.parsed.x} MAD, Range: ${context.parsed.y} km`
+                        }
+                    }
+                }
+            }
+        });
+
+        // 4. Radar Chart (Preferences)
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Price', 'Range', 'Speed', 'Portability', 'Durability'],
+                datasets: [{
+                    label: 'Typical Consumer',
+                    data: [90, 80, 60, 85, 70], // Wants cheap, portable, good range
+                    backgroundColor: 'rgba(45, 106, 79, 0.2)',
+                    borderColor: '#2D6A4F',
+                    pointBackgroundColor: '#2D6A4F'
+                },
+                {
+                    label: 'Market Reality (Mid-Range)',
+                    data: [70, 60, 65, 80, 65], // Reality check
+                    backgroundColor: 'rgba(224, 122, 95, 0.2)',
+                    borderColor: '#E07A5F',
+                    pointBackgroundColor: '#E07A5F'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#E5E7EB' },
+                        grid: { color: '#E5E7EB' },
+                        pointLabels: { font: { size: 12 } },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                         callbacks: {
+                            title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                const label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- Interaction Logic ---
+        function toggleDetails(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize Price Context
+        document.getElementById('price-context').innerHTML = marketData.priceBrackets.context[1];
+
+    </script>
+</body>
+</html>
