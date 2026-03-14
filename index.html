@@ -1,640 +1,539 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morocco Electric Scooter Market Analysis Brahim</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F9F7F2; /* Warm Neutral Background */
-            color: #333333;
-        }
-
-        /* Chart Container Styling - Mandatory Strictness */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F9F7F2;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D1D5DB;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9CA3AF;
-        }
-
-        /* Interactive Elements */
-        .interactive-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .interactive-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .active-tab {
-            border-bottom: 2px solid #2D6A4F;
-            color: #2D6A4F;
-            font-weight: 600;
-        }
-    </style>
-    <!-- Chosen Palette: Warm Earth & Eco Tech -->
-    <!-- Background: #F9F7F2 (Warm Sand), Text: #333333 (Charcoal), Accent 1: #2D6A4F (Deep Green), Accent 2: #E07A5F (Terra Cotta), UI White: #FFFFFF -->
-
-    <!-- Application Structure Plan: 
-         1. Header: Quick context and title.
-         2. Executive Dashboard (KPIs): Immediate high-level metrics (Growth, Price, Hubs) for quick digestion.
-         3. Competitive Landscape (Tabs + Chart): Comparison of major players (Xiaomi vs Ninebot vs Clones) using a Donut chart and clickable info cards. Best for understanding market dominance.
-         4. Pricing Intelligence (Interactive Chart): Bar chart of price brackets. User clicks a bracket to see "What you get for this money". Connects cost to value.
-         5. Technical Specs & Consumer Preferences (Scatter + Radar): Correlation between Price/Range and a Radar chart comparing "Ideal Consumer" vs "Market Reality".
-         6. Strategic Analysis (SWOT Grid): Interactive grid to explore strategic positioning without overwhelming text.
-         7. Distribution Flow: Simple visual process map using HTML/CSS.
-         Rationale: Logic flows from "What is the market?" -> "Who is playing?" -> "How much does it cost?" -> "What do I get?" -> "What is the strategy?".
-    -->
-
-    <!-- Visualization & Content Choices:
-         1. Market Share -> Donut Chart (Chart.js) -> Compare -> Shows dominance of Xiaomi clearly.
-         2. Price Brackets -> Bar Chart (Chart.js) -> Inform/Compare -> Visualizes the "Sweet Spot" (4k-6k MAD).
-         3. Price vs Range -> Scatter Plot (Chart.js) -> Relationship -> Correlates investment with performance capability.
-         4. Spec Comparison -> Radar Chart (Chart.js) -> Compare -> Shows trade-offs between speed, weight, and range.
-         5. SWOT -> Interactive Grid (HTML/JS) -> Organize -> Clean way to present text-heavy analysis.
-         6. Distribution -> Flexbox Flow (HTML/CSS) -> Organize -> Visualizes supply chain steps.
-         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
-    -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prix de Revient Complet — SPC Factory</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e2a;
+    --border: #252a38;
+    --accent: #e8c547;
+    --accent2: #4ef0b4;
+    --accent3: #f06b6b;
+    --accent4: #a78bfa;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; padding: 40px 20px; }
+  .grid-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: linear-gradient(rgba(232,197,71,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,197,71,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+  header { margin-bottom: 40px; }
+  .tag {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+    color: var(--accent); background: rgba(232,197,71,0.1);
+    padding: 4px 10px; border-radius: 2px; display: inline-block; margin-bottom: 12px;
+  }
+  h1 { font-size: clamp(24px, 4vw, 42px); font-weight: 800; line-height: 1.1; }
+  h1 span { color: var(--accent); }
+  .subtitle { color: var(--muted); font-family: var(--mono); font-size: 12px; margin-top: 8px; }
+  .section-title {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    color: var(--muted); text-transform: uppercase;
+    border-left: 2px solid var(--accent); padding-left: 10px; margin-bottom: 16px;
+  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-bottom: 18px; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    color: var(--muted); text-align: left; padding: 8px 10px;
+    border-bottom: 1px solid var(--border); text-transform: uppercase;
+  }
+  td { padding: 8px 10px; font-size: 13px; border-bottom: 1px solid rgba(37,42,56,0.5); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.015); }
+  .mat-name { font-weight: 600; font-size: 13px; }
+  .mat-cn { color: var(--muted); font-size: 10px; font-family: var(--mono); }
+  .mat-note { color: var(--accent); font-size: 10px; font-family: var(--mono); }
+  input[type="number"] {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--mono); font-size: 12px;
+    padding: 5px 8px; border-radius: 4px; width: 85px; text-align: right;
+    transition: border-color 0.2s;
+  }
+  input[type="number"]:focus { outline: none; border-color: var(--accent); }
+  input.modified { border-color: var(--accent); background: rgba(232,197,71,0.07); }
+  .price-cell { font-family: var(--mono); font-size: 12px; }
+  .price-total { color: var(--accent2); font-weight: 500; font-family: var(--mono); font-size: 12px; }
+  .optional-badge {
+    font-family: var(--mono); font-size: 10px; color: var(--muted);
+    background: var(--surface2); padding: 2px 7px; border-radius: 2px; border: 1px solid var(--border);
+  }
+  .no-cell { font-family: var(--mono); color: var(--muted); font-size: 11px; }
+  .results { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 26px; margin-bottom: 18px; }
+  .breakdown-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 16px; }
+  .breakdown-box {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 12px 14px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .breakdown-label { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .breakdown-val { font-family: var(--mono); font-size: 14px; font-weight: 600; }
+  .grand-total-row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(232,197,71,0.08); border: 1px solid rgba(232,197,71,0.3);
+    border-radius: 8px; padding: 18px 22px; margin-top: 16px; flex-wrap: wrap; gap: 12px;
+  }
+  .grand-total-label { font-size: 16px; font-weight: 700; }
+  .grand-total-val { font-size: 38px; font-weight: 800; color: var(--accent); font-family: var(--mono); }
+  .grand-total-ref { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .diff-row {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 12px 18px; margin-top: 12px; flex-wrap:wrap;
+    font-family: var(--mono); font-size: 13px;
+  }
+  .diff-label { color: var(--muted); flex: 1; }
+  .diff-val { font-weight: 600; font-size: 16px; }
+  .cheaper { color: var(--accent2); }
+  .expensive { color: var(--accent3); }
+  .recycled-info {
+    background: rgba(232,197,71,0.06); border: 1px solid rgba(232,197,71,0.2);
+    border-radius: 6px; padding: 12px 16px; font-size: 13px; line-height: 1.7; color: var(--text); margin-bottom: 14px;
+  }
+  .recycled-info strong { color: var(--accent); }
+  .info-box {
+    background: rgba(78,240,180,0.05); border: 1px solid rgba(78,240,180,0.12);
+    border-radius: 6px; padding: 14px 16px;
+    font-family: var(--mono); font-size: 11px; color: var(--accent2);
+    margin-top: 14px; line-height: 1.9; white-space: pre-wrap;
+  }
+  footer { text-align: center; font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 40px; padding-bottom: 20px; }
+  .grouped-note { color: var(--muted); font-size:10px; font-style:italic; padding-left:18px; }
+</style>
 </head>
-<body class="antialiased">
+<body>
+<div class="grid-bg"></div>
+<div class="container">
 
-    <!-- Navigation / Header -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-2xl mr-2">🛴</span>
-                    <span class="font-bold text-xl text-gray-800 tracking-tight">E-Scooter Insights <span class="text-[#2D6A4F]">Morocco</span></span>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <button onclick="scrollToSection('overview')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Overview</button>
-                    <button onclick="scrollToSection('competition')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Competition</button>
-                    <button onclick="scrollToSection('pricing')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Pricing</button>
-                    <button onclick="scrollToSection('strategy')" class="text-gray-600 hover:text-[#2D6A4F] px-3 py-2 text-sm font-medium">Strategy</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <header>
+    <div class="tag">CALCULATEUR COMPLET — SPC FLOORING</div>
+    <h1>Prix de <span>Revient</span> Complet — 4MM</h1>
+    <div class="subtitle">// 3.7MM CORE · 7.4KG/M² · 391.3KG/batch → 48.9M²/batch · rendement 92.6% · base CN/VN Big Factory</div>
+  </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+  <!-- SECTION 1 : Matières premières -->
 
-        <!-- SECTION 1: EXECUTIVE DASHBOARD -->
-        <section id="overview" class="scroll-mt-24">
-            <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-900">Market Executive Summary</h1>
-                <p class="mt-2 text-gray-600 max-w-3xl">
-                    The Moroccan electric scooter market has transitioned from a niche hobbyist sector to a critical component of urban micro-mobility. Driven by rising fuel costs and traffic congestion in hubs like Casablanca and Rabat, the market is seeing double-digit year-over-year growth.
-                </p>
-            </div>
+  <div class="card">
+    <div class="section-title">① Matières Premières — Core SPC ($/kg)</div>
+    <table>
+      <thead>
+        <tr><th>N°</th><th>Matière</th><th>$/kg (réf)</th><th>$/kg (usine)</th><th>Kg/batch</th><th>$/M² calculé</th></tr>
+      </thead>
+      <tbody id="mat-table"></tbody>
+    </table>
+  </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- KPI Card 1 -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-[#2D6A4F]">
-                    <div class="text-sm font-medium text-gray-500 uppercase">YoY Growth</div>
-                    <div class="mt-2 flex items-baseline">
-                        <span class="text-3xl font-semibold text-gray-900">~15%</span>
-                        <span class="ml-2 text-sm font-medium text-green-600">▲ Rising</span>
-                    </div>
-                    <div class="mt-1 text-xs text-gray-500">Estimated annual adoption rate</div>
-                </div>
-                <!-- KPI Card 2 -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-[#E07A5F]">
-                    <div class="text-sm font-medium text-gray-500 uppercase">Avg. Retail Price</div>
-                    <div class="mt-2 flex items-baseline">
-                        <span class="text-3xl font-semibold text-gray-900">4,500</span>
-                        <span class="ml-2 text-sm font-medium text-gray-500">MAD</span>
-                    </div>
-                    <div class="mt-1 text-xs text-gray-500">Mid-range segment dominance</div>
-                </div>
-                <!-- KPI Card 3 -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-[#2D6A4F]">
-                    <div class="text-sm font-medium text-gray-500 uppercase">Market Leader</div>
-                    <div class="mt-2 flex items-baseline">
-                        <span class="text-3xl font-semibold text-gray-900">Xiaomi</span>
-                    </div>
-                    <div class="mt-1 text-xs text-gray-500">~45-50% Market Share</div>
-                </div>
-                <!-- KPI Card 4 -->
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-gray-400">
-                    <div class="text-sm font-medium text-gray-500 uppercase">Primary Hub</div>
-                    <div class="mt-2 flex items-baseline">
-                        <span class="text-3xl font-semibold text-gray-900">Casablanca</span>
-                    </div>
-                    <div class="mt-1 text-xs text-gray-500">Highest adoption density</div>
-                </div>
-            </div>
-        </section>
+  <!-- SECTION 2 : Recyclé -->
 
-        <!-- SECTION 2: COMPETITIVE LANDSCAPE -->
-        <section id="competition" class="scroll-mt-24">
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">Competitive Landscape & Key Players</h2>
-                <p class="mt-2 text-gray-600">
-                    The market is an oligopoly dominated by international brands, specifically Xiaomi, which sets the standard for specifications and pricing.
-                </p>
-            </div>
+  <div class="card">
+    <div class="section-title">② Matériau Recyclé — Configuration</div>
+    <div class="recycled-info">
+      <strong>⚠ Broyat / Mouture (N°8)</strong> — Réf : $0.40/kg · 75kg/batch · $30/M²<br>
+      • Chutes propres d'usine → coût broyage seulement (<strong>~$0.05–0.15/kg</strong>) &nbsp;|&nbsp;
+      • Achat recyclé externe → prix fournisseur &nbsp;|&nbsp;
+      • Sans recyclé → 0 kg
+    </div>
+    <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">$ /KG RECYCLÉ</div>
+        <input type="number" id="recycled-price" value="0.15" step="0.01" min="0" style="width:100px" oninput="recalc()">
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;">KG / BATCH</div>
+        <input type="number" id="recycled-kg" value="75" step="1" min="0" style="width:100px" oninput="recalc()">
+      </div>
+      <div id="recycled-result" style="font-family:var(--mono); font-size:12px; color:var(--accent2); margin-top:16px;"></div>
+    </div>
+  </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Chart Area -->
-                <div class="bg-white rounded-lg shadow p-6 lg:col-span-1 flex flex-col justify-center">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Market Share Estimation</h3>
-                    <div class="chart-container">
-                        <canvas id="marketShareChart"></canvas>
-                    </div>
-                    <p class="text-xs text-center text-gray-500 mt-4">Based on import volume & retailer inventory (Est.)</p>
-                </div>
+  <!-- SECTION 3 : Couches -->
 
-                <!-- Interactive Profiles -->
-                <div class="lg:col-span-2 space-y-4">
-                    <!-- Player 1 -->
-                    <div class="interactive-card bg-white rounded-lg shadow p-6 border border-gray-100" onclick="toggleDetails('xiaomi-details')">
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-xl">🏆</div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-900">Xiaomi (Mi)</h3>
-                                    <p class="text-sm text-gray-500">The Market Definer</p>
-                                </div>
-                            </div>
-                            <span class="text-[#2D6A4F] text-sm font-semibold">Click for Details ▼</span>
-                        </div>
-                        <div id="xiaomi-details" class="hidden mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 space-y-2">
-                            <p><strong>Position:</strong> Absolute Market Leader.</p>
-                            <p><strong>Key Models:</strong> Mi Electric Scooter 3, Pro 2, Essential.</p>
-                            <p><strong>Target:</strong> Mass market commuters. Parts are widely available in Derb Ghallef and local repair shops.</p>
-                        </div>
-                    </div>
+  <div class="card">
+    <div class="section-title">③ Couches Supérieures — Board / Film / Wear Layer ($/M²)</div>
+    <table>
+      <thead>
+        <tr><th>N°</th><th>Poste</th><th>$/M² (réf)</th><th>$/M² (usine)</th></tr>
+      </thead>
+      <tbody id="layers-table"></tbody>
+    </table>
+  </div>
 
-                    <!-- Player 2 -->
-                    <div class="interactive-card bg-white rounded-lg shadow p-6 border border-gray-100" onclick="toggleDetails('ninebot-details')">
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">💎</div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-900">Segway-Ninebot</h3>
-                                    <p class="text-sm text-gray-500">The Premium Challenger</p>
-                                </div>
-                            </div>
-                            <span class="text-[#2D6A4F] text-sm font-semibold">Click for Details ▼</span>
-                        </div>
-                        <div id="ninebot-details" class="hidden mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 space-y-2">
-                            <p><strong>Position:</strong> Premium / Durable Choice.</p>
-                            <p><strong>Key Models:</strong> Max G30, F-Series (F25/F40).</p>
-                            <p><strong>Differentiation:</strong> 10-inch tubeless tires (better for Moroccan roads), Rear-wheel drive, superior build quality.</p>
-                        </div>
-                    </div>
+  <!-- SECTION 4 : Fabrication -->
 
-                    <!-- Player 3 -->
-                    <div class="interactive-card bg-white rounded-lg shadow p-6 border border-gray-100" onclick="toggleDetails('clones-details')">
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-xl">📉</div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-900">White-Label / Clones</h3>
-                                    <p class="text-sm text-gray-500">Budget Entry Points</p>
-                                </div>
-                            </div>
-                            <span class="text-[#2D6A4F] text-sm font-semibold">Click for Details ▼</span>
-                        </div>
-                        <div id="clones-details" class="hidden mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 space-y-2">
-                            <p><strong>Position:</strong> Low-cost alternatives (often under 3,000 MAD).</p>
-                            <p><strong>Models:</strong> Generic "M365 Copy" designs.</p>
-                            <p><strong>Risk:</strong> Lower battery quality (unknown cells), lack of warranty, often sold on informal markets.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="card">
+    <div class="section-title">④ Coûts de Fabrication & Finition ($/M²)</div>
+    <table>
+      <thead>
+        <tr><th>N°</th><th>Poste</th><th>$/M² (réf)</th><th>$/M² (usine)</th></tr>
+      </thead>
+      <tbody id="process-table"></tbody>
+    </table>
+    <div style="margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--muted);padding-left:4px;">
+      ⓘ UV Coating 14+15 = $0.25 total · IXPE 16+17 = $0.40 total — tu peux décomposer ou garder le total dans la ligne principale
+    </div>
+  </div>
 
-        <!-- SECTION 3: PRICING & PRODUCT INTELLIGENCE -->
-        <section id="pricing" class="scroll-mt-24">
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">Pricing & Performance Analysis</h2>
-                <p class="mt-2 text-gray-600">
-                    Understanding the correlation between price (MAD) and capability (Range/Power). The "Sweet Spot" for Moroccan consumers lies between 4,000 and 6,000 MAD.
-                </p>
-            </div>
+  <!-- SECTION 5 : Emballage -->
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Price Brackets Bar Chart -->
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-semibold text-gray-800">Price Segmentation (MAD)</h3>
-                        <span class="text-xs bg-gray-100 px-2 py-1 rounded">Click bars for context</span>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="priceBracketChart"></canvas>
-                    </div>
-                    <div id="price-context" class="mt-4 p-4 bg-gray-50 rounded text-sm text-gray-700 min-h-[80px]">
-                        Click on a price bar to see typical specifications and user segments for that bracket.
-                    </div>
-                </div>
+  <div class="card">
+    <div class="section-title">⑤ Emballage, Main d'Œuvre & Usure ($/M²)</div>
+    <table>
+      <thead>
+        <tr><th>N°</th><th>Poste</th><th>$/M² (réf)</th><th>$/M² (usine)</th></tr>
+      </thead>
+      <tbody id="pack-table"></tbody>
+    </table>
+    <div style="margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--muted);padding-left:4px;">
+      ⓘ Carton 19+20+21 = $0.40 total — répartis selon ta structure de coûts réelle
+    </div>
+  </div>
 
-                <!-- Price vs Range Scatter -->
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Value Map: Price vs. Range</h3>
-                    <div class="chart-container">
-                        <canvas id="scatterChart"></canvas>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-2">Highlights diminishing returns above 8,000 MAD for pure range.</p>
-                </div>
-            </div>
-        </section>
+  <!-- SECTION 6 : Labor & Électricité -->
 
-        <!-- SECTION 4: TECHNICAL & CONSUMER PREFERENCE -->
-        <section id="specs" class="scroll-mt-24">
-            <div class="bg-white rounded-lg shadow overflow-hidden">
-                <div class="p-6 border-b border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-900">Technical Deep Dive & Consumer Profile</h2>
-                    <p class="mt-2 text-gray-600">
-                        Comparing the "Ideal" Moroccan Commuter Scooter against market realities.
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 p-6 gap-8">
-                    <!-- Radar Chart -->
-                    <div>
-                         <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Feature Priorities</h3>
-                        <div class="chart-container">
-                            <canvas id="radarChart"></canvas>
-                        </div>
-                    </div>
+  <div class="card">
+    <div class="section-title">⑥ Main d'Œuvre Production & Électricité ($/M²)</div>
 
-                    <!-- Tech Spec Insight List -->
-                    <div class="space-y-6">
-                        <h3 class="text-lg font-semibold text-gray-800">Key Specification Drivers</h3>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center text-xl">🔋</div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-medium text-gray-900">Battery & Voltage</h4>
-                                <p class="text-sm text-gray-600">36V is standard, but <strong>48V systems</strong> are gaining traction for better hill climbing in cities like Tangier. Lithium-ion 18650 cells are ubiquitous.</p>
-                            </div>
-                        </div>
+```
+<!-- Labor -->
+<div style="margin-bottom:20px;">
+  <div style="font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:12px;letter-spacing:0.08em;">LABOR COST — PRODUCTION DIRECTE</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:10px;">
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:5px;">NB OPÉRATEURS / BATCH</div>
+      <input type="number" id="labor-workers" value="4" step="1" min="0" style="width:100px" oninput="recalc()">
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:5px;">SALAIRE MENSUEL / OP ($)</div>
+      <input type="number" id="labor-salary" value="400" step="10" min="0" style="width:100px" oninput="recalc()">
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:5px;">BATCHES / MOIS</div>
+      <input type="number" id="labor-batches" value="60" step="1" min="1" style="width:100px" oninput="recalc()">
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:flex-end;">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:5px;">RÉSULTAT $/M²</div>
+      <div id="labor-result" style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--accent2);">—</div>
+    </div>
+  </div>
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">
+    ⓘ Formule : (nb opérateurs × salaire) ÷ (batches/mois × 48.9 M²/batch)
+  </div>
+</div>
 
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-lg flex items-center justify-center text-xl">🛞</div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-medium text-gray-900">Tire Technology</h4>
-                                <p class="text-sm text-gray-600"><strong>10-inch Tubeless</strong> tires are becoming the preferred choice over standard 8.5-inch tubed tires to combat rougher road textures and reduce puncture frequency.</p>
-                            </div>
-                        </div>
+<div style="border-top:1px solid var(--border);margin:16px 0;"></div>
 
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center text-xl">⚡</div>
-                            <div class="ml-4">
-                                <h4 class="text-md font-medium text-gray-900">Motor Power</h4>
-                                <p class="text-sm text-gray-600"><strong>300W-350W nominal</strong> is the new baseline (up from 250W) to handle adult weight + backpacks on inclines without losing speed.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Électricité -->
+<div>
+  <div style="font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:12px;letter-spacing:0.08em;">ÉLECTRICITÉ</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:10px;">
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:5px;">CONSO kWh / BATCH</div>
+      <input type="number" id="elec-kwh" value="180" step="10" min="0" style="width:100px" oninput="recalc()">
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:5px;">PRIX kWh ($)</div>
+      <input type="number" id="elec-price" value="0.08" step="0.01" min="0" style="width:100px" oninput="recalc()">
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:flex-end;">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:5px;">RÉSULTAT $/M²</div>
+      <div id="elec-result" style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--accent2);">—</div>
+    </div>
+  </div>
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);">
+    ⓘ Formule : (kWh/batch × $/kWh) ÷ 48.9 M²/batch &nbsp;·&nbsp; Réf CN/VN usine intégrée : ~180–250 kWh/batch &nbsp;·&nbsp; Prix elec : Algérie ~$0.04, Maroc ~$0.10, Europe ~$0.18
+  </div>
+</div>
+```
 
-        <!-- SECTION 5: STRATEGIC SWOT ANALYSIS -->
-        <section id="strategy" class="scroll-mt-24">
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">Strategic SWOT Analysis</h2>
-                <p class="mt-2 text-gray-600">Internal and external factors shaping the future of the market.</p>
-            </div>
+  </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Strengths -->
-                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-green-500">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl mr-2">💪</span>
-                        <h3 class="text-lg font-bold text-gray-900">Strengths</h3>
-                    </div>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
-                        <li>Low operating cost vs combustion mopeds.</li>
-                        <li>High adaptability to heavy traffic in Casa/Rabat.</li>
-                        <li>Mature spare parts availability (Xiaomi ecosystem).</li>
-                    </ul>
-                </div>
+  <!-- RÉSULTATS -->
 
-                <!-- Weaknesses -->
-                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-yellow-500">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl mr-2">⚠️</span>
-                        <h3 class="text-lg font-bold text-gray-900">Weaknesses</h3>
-                    </div>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
-                        <li>Battery lifespan degradation in high heat.</li>
-                        <li>Lack of dedicated service centers outside major hubs.</li>
-                        <li>Safety concerns on shared roadways.</li>
-                    </ul>
-                </div>
+  <div class="results">
+    <div class="section-title">Résultats Complets — Décomposition par Section</div>
+    <div class="breakdown-grid">
+      <div class="breakdown-box">
+        <span class="breakdown-label">① Matières (réf)</span>
+        <span class="breakdown-val" style="color:var(--accent)" id="bd-mat-ref">—</span>
+      </div>
+      <div class="breakdown-box">
+        <span class="breakdown-label">① Matières (usine)</span>
+        <span class="breakdown-val" style="color:var(--accent2)" id="bd-mat-fact">—</span>
+      </div>
+      <div class="breakdown-box">
+        <span class="breakdown-label">③ Couches</span>
+        <span class="breakdown-val" style="color:var(--accent4)" id="bd-layers">—</span>
+      </div>
+      <div class="breakdown-box">
+        <span class="breakdown-label">④ Fabrication</span>
+        <span class="breakdown-val" id="bd-process">—</span>
+      </div>
+      <div class="breakdown-box">
+        <span class="breakdown-label">⑤ Emballage & Usure</span>
+        <span class="breakdown-val" id="bd-pack">—</span>
+      </div>
+      <div class="breakdown-box">
+        <span class="breakdown-label">⑥ Labor production</span>
+        <span class="breakdown-val" style="color:var(--accent2)" id="bd-labor">—</span>
+      </div>
+      <div class="breakdown-box">
+        <span class="breakdown-label">⑥ Électricité</span>
+        <span class="breakdown-val" style="color:var(--accent2)" id="bd-elec">—</span>
+      </div>
+      <div class="breakdown-box">
+        <span class="breakdown-label">Total référence</span>
+        <span class="breakdown-val" style="color:var(--accent)" id="bd-ref-grand">—</span>
+      </div>
+    </div>
 
-                <!-- Opportunities -->
-                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-blue-500">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl mr-2">🚀</span>
-                        <h3 class="text-lg font-bold text-gray-900">Opportunities</h3>
-                    </div>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
-                        <li>B2B Logistics: Last-mile delivery fleets.</li>
-                        <li>Eco-tourism rentals in Marrakech/Agadir.</li>
-                        <li>Integration with public transit (tramway stations).</li>
-                    </ul>
-                </div>
+```
+<div class="grand-total-row">
+  <div>
+    <div class="grand-total-label">Prix de Revient — Ton Usine</div>
+    <div class="grand-total-ref">Référence tableau (CN/VN) : <span id="ref-total-display">—</span> /M²</div>
+  </div>
+  <div style="text-align:right">
+    <div class="grand-total-val" id="grand-total">—</div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--muted);">$ / M²</div>
+  </div>
+</div>
 
-                <!-- Threats -->
-                <div class="p-6 bg-white rounded-lg shadow border-t-4 border-red-500">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl mr-2">🛡️</span>
-                        <h3 class="text-lg font-bold text-gray-900">Threats</h3>
-                    </div>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
-                        <li>Potential strict regulation/licensing enforcement.</li>
-                        <li>Import tariff increases on batteries.</li>
-                        <li>Infrastructure safety limitations.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+<div class="diff-row">
+  <span class="diff-label">Écart total vs référence CN/VN</span>
+  <span class="diff-val" id="diff-val">—</span>
+  <span id="diff-badge"></span>
+</div>
 
-        <!-- SECTION 6: DISTRIBUTION FLOW -->
-        <section class="mb-12">
-            <h2 class="text-xl font-bold text-gray-900 mb-6">Supply Chain & Distribution Flow</h2>
-            <div class="bg-white p-8 rounded-lg shadow flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center">
-                
-                <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-3xl mb-2">🇨🇳</div>
-                    <span class="font-bold text-gray-800">Manufacturing</span>
-                    <span class="text-xs text-gray-500">Shenzhen/China</span>
-                </div>
+<div class="info-box" id="info-box">// Calcul en cours...</div>
+```
 
-                <div class="text-gray-400 text-2xl hidden md:block">➔</div>
-                <div class="text-gray-400 text-2xl md:hidden">⬇</div>
+  </div>
 
-                <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-3xl mb-2">🚢</div>
-                    <span class="font-bold text-gray-800">Import</span>
-                    <span class="text-xs text-gray-500">Casa Port / Tangier</span>
-                </div>
+  <footer>SPC Cost Calculator · v2 Complet · 23 postes · données IMG_9053</footer>
+</div>
 
-                <div class="text-gray-400 text-2xl hidden md:block">➔</div>
-                <div class="text-gray-400 text-2xl md:hidden">⬇</div>
+<script>
+const REF_M2 = 48.9;
 
-                <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-3xl mb-2">🏢</div>
-                    <span class="font-bold text-gray-800">Distributors</span>
-                    <span class="text-xs text-gray-500">Marjane / ElectroPlanet / Derb Ghallef</span>
-                </div>
+const materials = [
+  { no:1,  name:"PVC SG5 K66~68",         cn:"树脂",   refP:0.66,  factP:0.800, kg:75,  note:"800 USD/t = $0.800/kg" },
+  { no:2,  name:"CaCO3 Mesh 300~200",      cn:"碳酸钙",  refP:0.04,  factP:0.045, kg:225, note:"45 USD/t = $0.045/kg" },
+  { no:3,  name:"Calcium-zinc stabilizer", cn:"稳定剂",  refP:1.00,  factP:1.00,  kg:7   },
+  { no:4,  name:"PVC lubricant S60",       cn:"内滑",   refP:1.45,  factP:1.45,  kg:1.2 },
+  { no:5,  name:"PE wax",                  cn:"外滑",   refP:1.58,  factP:1.58,  kg:1.1 },
+  { no:6,  name:"CPE impact modifier",     cn:"CPE",    refP:0.95,  factP:0.95,  kg:4   },
+  { no:7,  name:"ACR impact modifier",     cn:"ACR",    refP:1.05,  factP:1.05,  kg:3   },
+  { no:9,  name:"Carbon black",            cn:"碳黑",   refP:null,  factP:0,     kg:0,  optional:true },
+];
 
-                <div class="text-gray-400 text-2xl hidden md:block">➔</div>
-                <div class="text-gray-400 text-2xl md:hidden">⬇</div>
+const layers = [
+  { no:10, name:"SPC Board (core assemblé)",  refV:2.17, factV:2.17 },
+  { no:11, name:"Decorative Film 彩膜",       refV:0.50, factV:0.50, note:"$0.45~0.65/M² — mettre ton prix réel" },
+  { no:12, name:"Wearing Layer 0.3MM 耐磨",   refV:0.37, factV:0.37, note:"~2700M²/tonne" },
+];
 
-                <div class="flex flex-col items-center">
-                    <div class="w-16 h-16 bg-[#2D6A4F] text-white rounded-full flex items-center justify-center text-3xl mb-2">👤</div>
-                    <span class="font-bold text-gray-800">End User</span>
-                    <span class="text-xs text-gray-500">Last Mile Commuter</span>
-                </div>
+const process = [
+  { no:13, name:"Mixer + Extrusion 混料+挤出",     refV:0.30, factV:0.30 },
+  { no:14, name:"UV Coating Base+Surface 油漆",    refV:0.25, factV:0.25, note:"lignes 14+15 groupées = $0.25 réf" },
+  { no:15, name:"  └ UV Processing Cost 加工成本",  refV:0,    factV:0,    sub:true },
+  { no:16, name:"IXPE 1.5MM matière 静音膜",       refV:0.40, factV:0.40, note:"lignes 16+17 groupées = $0.40 réf" },
+  { no:17, name:"  └ IXPE Lamination 贴膜加工",    refV:0,    factV:0,    sub:true },
+  { no:18, name:"Cutting + Click 锯切开槽",        refV:0.30, factV:0.30 },
+];
 
-            </div>
-        </section>
+const pack = [
+  { no:19, name:"Carton Costs 包装盒",          refV:0.40, factV:0.40, note:"lignes 19+20+21 groupées = $0.40 réf" },
+  { no:20, name:"  └ Packing Labour 包装人工",  refV:0,    factV:0,    sub:true },
+  { no:21, name:"  └ Packing Materials 托盘",   refV:0,    factV:0,    sub:true },
+  { no:22, name:"Wearing Parts 刀具+螺杆",       refV:0.20, factV:0.20 },
+  { no:23, name:"Machinery Investment Factory", refV:0,    factV:0,   optional:true },
+];
 
-        <!-- Footer -->
-        <footer class="border-t border-gray-200 pt-8 text-center text-gray-500 text-sm">
-            <p><strong>Source:</strong> Comprehensive Market Analysis of the Electric Scooter Industry in Morocco (2024-2025 Data).</p>
-            <p class="mt-2">Currency: MAD (Moroccan Dirham). All prices estimated based on retail averages.</p>
-            <p class="mt-4 mb-8">© 2025 Market Intelligence Unit.</p>
-        </footer>
+function buildMatTable() {
+  const tbody = document.getElementById('mat-table');
+  materials.forEach((m, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="no-cell">${m.no}</td>
+      <td>
+        <div class="mat-name">${m.name}</div>
+        ${m.cn ? `<div class="mat-cn">${m.cn}</div>` : ''}
+        ${m.note ? `<div class="mat-note">${m.note}</div>` : ''}
+      </td>
+      <td class="price-cell">${m.refP !== null ? '$'+m.refP.toFixed(3) : '<span class="optional-badge">optional</span>'}</td>
+      <td class="price-cell">
+        ${m.optional ? '<span class="optional-badge">optional</span>' :
+          `<input type="number" id="mp-${i}" value="${m.factP}" step="0.001" min="0"
+            ${(m.no<=2) ? 'class="modified"' : ''} oninput="recalc()">`}
+      </td>
+      <td>${m.optional ? '' : `<input type="number" id="mk-${i}" value="${m.kg}" step="0.1" min="0" oninput="recalc()">`}</td>
+      <td class="price-total" id="mt-${i}">—</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
 
-    </main>
+function buildSimpleTable(tableId, data, prefix) {
+  const tbody = document.getElementById(tableId);
+  data.forEach((item, i) => {
+    const tr = document.createElement('tr');
+    if (item.sub) {
+      tr.innerHTML = `
+        <td class="no-cell">${item.no}</td>
+        <td><div class="mat-name" style="color:var(--muted);font-weight:400">${item.name}</div></td>
+        <td class="price-cell" style="color:var(--muted)">groupé ↑</td>
+        <td class="price-cell">
+          <input type="number" id="${prefix}-${i}" value="${item.factV}" step="0.01" min="0" oninput="recalc()">
+        </td>
+      `;
+    } else {
+      tr.innerHTML = `
+        <td class="no-cell">${item.no}</td>
+        <td>
+          <div class="mat-name">${item.name}</div>
+          ${item.note ? `<div class="mat-note">${item.note}</div>` : ''}
+        </td>
+        <td class="price-cell">${item.refV > 0 ? '$'+item.refV.toFixed(2) : (item.optional ? '<span class="optional-badge">optional</span>' : '$0.00')}</td>
+        <td class="price-cell">
+          ${item.optional ? '<span class="optional-badge">optional</span>' :
+            `<input type="number" id="${prefix}-${i}" value="${item.factV}" step="0.01" min="0" oninput="recalc()">`}
+        </td>
+      `;
+    }
+    tbody.appendChild(tr);
+  });
+}
 
-    <!-- JavaScript Logic -->
-    <script>
-        // Data Store
-        const marketData = {
-            brands: ['Xiaomi', 'Segway-Ninebot', 'Generic/Clones', 'High-End (Dualtron etc)', 'Other'],
-            share: [48, 22, 20, 5, 5],
-            priceBrackets: {
-                labels: ['Budget (<3k)', 'Mid-Range (3k-6k)', 'Premium (6k-10k)', 'High-Perf (>10k)'],
-                data: [25, 55, 15, 5],
-                context: [
-                    "<strong>Budget Segment (<3000 MAD):</strong> Mostly generic clones or used older Xiaomi models. Target: Students. Risk: Low durability.",
-                    "<strong>Mid-Range (3000-6000 MAD):</strong> The 'Sweet Spot'. Includes Xiaomi Mi 3, Essential, and Ninebot F-Series. Best balance of price/performance.",
-                    "<strong>Premium (6000-10000 MAD):</strong> Ninebot G30 Max territory. Long range (65km), tubeless tires. Target: Serious daily commuters.",
-                    "<strong>High-Performance (>10000 MAD):</strong> Dual motors, suspension, high speeds (50km/h+). Brands like Dualtron. Niche enthusiast market."
-                ]
-            },
-            scatter: [
-                {x: 2800, y: 20}, {x: 3500, y: 30}, {x: 4200, y: 30}, {x: 5500, y: 45}, 
-                {x: 6500, y: 40}, {x: 8500, y: 65}, {x: 12000, y: 70}, {x: 15000, y: 90}
-            ]
-        };
+function recalc() {
+  let matRefTotal = 0, matFactTotal = 0, totalKg = 0;
 
-        // --- Chart Configuration ---
-        Chart.defaults.font.family = "'Inter', sans-serif";
-        Chart.defaults.color = '#4B5563';
+  materials.forEach((m, i) => {
+    if (m.optional) { const el = document.getElementById('mt-'+i); if(el) el.textContent='—'; return; }
+    const priceEl = document.getElementById('mp-'+i);
+    const kgEl = document.getElementById('mk-'+i);
+    if (!priceEl || !kgEl) return;
+    const price = parseFloat(priceEl.value) || 0;
+    const kg = parseFloat(kgEl.value) || 0;
+    const factPM2 = price * kg / REF_M2;
+    const refPM2 = m.refP ? m.refP * kg / REF_M2 : 0;
+    matRefTotal += refPM2;
+    matFactTotal += factPM2;
+    totalKg += kg;
+    const el = document.getElementById('mt-'+i);
+    if (el) el.textContent = '$' + factPM2.toFixed(3);
+  });
 
-        // 1. Market Share Chart (Donut)
-        const ctxShare = document.getElementById('marketShareChart').getContext('2d');
-        const shareChart = new Chart(ctxShare, {
-            type: 'doughnut',
-            data: {
-                labels: marketData.brands,
-                datasets: [{
-                    data: marketData.share,
-                    backgroundColor: ['#E07A5F', '#3D405B', '#F4F1DE', '#81B29A', '#D1D5DB'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12 } },
-                    tooltip: {
-                         callbacks: {
-                            title: (tooltipItems) => {
-                                // Multiline handling
-                                const item = tooltipItems[0];
-                                const label = item.chart.data.labels[item.dataIndex];
-                                return Array.isArray(label) ? label.join(' ') : label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
+  const rPrice = parseFloat(document.getElementById('recycled-price').value) || 0;
+  const rKg = parseFloat(document.getElementById('recycled-kg').value) || 0;
+  const rPM2 = rPrice * rKg / REF_M2;
+  matRefTotal += 0.40 * 75 / REF_M2;
+  matFactTotal += rPM2;
+  totalKg += rKg;
+  document.getElementById('recycled-result').textContent =
+    `→ $${rPM2.toFixed(3)}/M²  (${rKg}kg × $${rPrice}/kg ÷ ${REF_M2}M²)`;
 
-        // 2. Price Bracket Chart (Bar) - Interactive
-        const ctxPrice = document.getElementById('priceBracketChart').getContext('2d');
-        const priceChart = new Chart(ctxPrice, {
-            type: 'bar',
-            data: {
-                labels: marketData.priceBrackets.labels.map(l => l.match(/.{1,16}/g) || [l]), // Split long labels
-                datasets: [{
-                    label: 'Market Volume Estimate (%)',
-                    data: marketData.priceBrackets.data,
-                    backgroundColor: ['#D1D5DB', '#2D6A4F', '#3D405B', '#E07A5F'],
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: { beginAtZero: true, grid: { display: false } },
-                    x: { grid: { display: false } }
-                },
-                onClick: (e, activeElements) => {
-                    if (activeElements.length > 0) {
-                        const index = activeElements[0].index;
-                        const contextBox = document.getElementById('price-context');
-                        contextBox.innerHTML = marketData.priceBrackets.context[index];
-                        contextBox.classList.add('bg-green-50');
-                        setTimeout(() => contextBox.classList.remove('bg-green-50'), 300);
-                    }
-                },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                         callbacks: {
-                            title: (tooltipItems) => {
-                                const item = tooltipItems[0];
-                                const label = item.chart.data.labels[item.dataIndex];
-                                return Array.isArray(label) ? label.join(' ') : label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
+  let layersTotal = 0, layersRef = 0;
+  layers.forEach((item, i) => {
+    const el = document.getElementById('ly-'+i);
+    const v = el ? parseFloat(el.value)||0 : item.factV;
+    layersTotal += v; layersRef += item.refV;
+  });
 
-        // 3. Scatter Chart (Price vs Range)
-        const ctxScatter = document.getElementById('scatterChart').getContext('2d');
-        const scatterChart = new Chart(ctxScatter, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'Scooter Models',
-                    data: marketData.scatter,
-                    backgroundColor: '#2D6A4F'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: { 
-                        type: 'linear', 
-                        position: 'bottom', 
-                        title: { display: true, text: 'Price (MAD)' },
-                        grid: { color: '#F3F4F6' }
-                    },
-                    y: { 
-                        title: { display: true, text: 'Range (KM)' },
-                        grid: { color: '#F3F4F6' }
-                    }
-                },
-                 plugins: {
-                    tooltip: {
-                         callbacks: {
-                            label: (context) => `Price: ${context.parsed.x} MAD, Range: ${context.parsed.y} km`
-                        }
-                    }
-                }
-            }
-        });
+  let processTotal = 0, processRef = 0;
+  process.forEach((item, i) => {
+    if (item.optional) return;
+    const el = document.getElementById('pr-'+i);
+    const v = el ? parseFloat(el.value)||0 : item.factV;
+    processTotal += v; processRef += item.refV;
+  });
 
-        // 4. Radar Chart (Preferences)
-        const ctxRadar = document.getElementById('radarChart').getContext('2d');
-        const radarChart = new Chart(ctxRadar, {
-            type: 'radar',
-            data: {
-                labels: ['Price', 'Range', 'Speed', 'Portability', 'Durability'],
-                datasets: [{
-                    label: 'Typical Consumer',
-                    data: [90, 80, 60, 85, 70], // Wants cheap, portable, good range
-                    backgroundColor: 'rgba(45, 106, 79, 0.2)',
-                    borderColor: '#2D6A4F',
-                    pointBackgroundColor: '#2D6A4F'
-                },
-                {
-                    label: 'Market Reality (Mid-Range)',
-                    data: [70, 60, 65, 80, 65], // Reality check
-                    backgroundColor: 'rgba(224, 122, 95, 0.2)',
-                    borderColor: '#E07A5F',
-                    pointBackgroundColor: '#E07A5F'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { color: '#E5E7EB' },
-                        grid: { color: '#E5E7EB' },
-                        pointLabels: { font: { size: 12 } },
-                        suggestedMin: 0,
-                        suggestedMax: 100
-                    }
-                },
-                plugins: {
-                    tooltip: {
-                         callbacks: {
-                            title: (tooltipItems) => {
-                                const item = tooltipItems[0];
-                                const label = item.chart.data.labels[item.dataIndex];
-                                return Array.isArray(label) ? label.join(' ') : label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
+  let packTotal = 0, packRef = 0;
+  pack.forEach((item, i) => {
+    if (item.optional) return;
+    const el = document.getElementById('pk-'+i);
+    const v = el ? parseFloat(el.value)||0 : item.factV;
+    packTotal += v; packRef += item.refV;
+  });
 
-        // --- Interaction Logic ---
-        function toggleDetails(id) {
-            const el = document.getElementById(id);
-            if (el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-            } else {
-                el.classList.add('hidden');
-            }
-        }
+  // Labor
+  const lWorkers = parseFloat(document.getElementById('labor-workers').value) || 0;
+  const lSalary  = parseFloat(document.getElementById('labor-salary').value)  || 0;
+  const lBatches = parseFloat(document.getElementById('labor-batches').value) || 1;
+  const laborPM2 = (lWorkers * lSalary) / (lBatches * REF_M2);
+  document.getElementById('labor-result').textContent = '$' + laborPM2.toFixed(3) + '/M²';
 
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+  // Électricité
+  const eKwh   = parseFloat(document.getElementById('elec-kwh').value)   || 0;
+  const ePrice = parseFloat(document.getElementById('elec-price').value) || 0;
+  const elecPM2 = (eKwh * ePrice) / REF_M2;
+  document.getElementById('elec-result').textContent = '$' + elecPM2.toFixed(3) + '/M²';
 
-        // Initialize Price Context
-        document.getElementById('price-context').innerHTML = marketData.priceBrackets.context[1];
+  const grandFact = matFactTotal + layersTotal + processTotal + packTotal + laborPM2 + elecPM2;
+  const grandRef  = matRefTotal  + layersRef   + processRef   + packRef;
 
-    </script>
+  document.getElementById('bd-mat-ref').textContent   = '$' + matRefTotal.toFixed(2)  + '/M²';
+  document.getElementById('bd-mat-fact').textContent  = '$' + matFactTotal.toFixed(2) + '/M²';
+  document.getElementById('bd-layers').textContent    = '$' + layersTotal.toFixed(2)  + '/M²';
+  document.getElementById('bd-process').textContent   = '$' + processTotal.toFixed(2) + '/M²';
+  document.getElementById('bd-pack').textContent      = '$' + packTotal.toFixed(2)    + '/M²';
+  document.getElementById('bd-labor').textContent     = '$' + laborPM2.toFixed(3)     + '/M²';
+  document.getElementById('bd-elec').textContent      = '$' + elecPM2.toFixed(3)      + '/M²';
+  document.getElementById('bd-ref-grand').textContent = '$' + grandRef.toFixed(2)     + '/M²';
+  document.getElementById('ref-total-display').textContent = '$' + grandRef.toFixed(2);
+  document.getElementById('grand-total').textContent  = '$' + grandFact.toFixed(2);
+
+  const diff = grandFact - grandRef;
+  const diffEl = document.getElementById('diff-val');
+  const badgeEl = document.getElementById('diff-badge');
+  const abs = Math.abs(diff).toFixed(2);
+  if (diff < 0) {
+    diffEl.textContent = '-$' + abs + '/M²'; diffEl.className = 'diff-val cheaper';
+    badgeEl.innerHTML = '<span style="background:rgba(78,240,180,0.15);color:var(--accent2);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:3px">MOINS CHER ✓</span>';
+  } else if (diff > 0) {
+    diffEl.textContent = '+$' + abs + '/M²'; diffEl.className = 'diff-val expensive';
+    badgeEl.innerHTML = '<span style="background:rgba(240,107,107,0.15);color:var(--accent3);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:3px">PLUS CHER ↑</span>';
+  } else {
+    diffEl.textContent = '$0.00/M²'; diffEl.className = 'diff-val'; badgeEl.innerHTML = '';
+  }
+
+  const pvc0 = parseFloat(document.getElementById('mp-0')?.value||0.80);
+  const caco = parseFloat(document.getElementById('mp-1')?.value||0.045);
+  document.getElementById('info-box').textContent =
+    `① MATIÈRES CORE (usine)  $${matFactTotal.toFixed(3)}/M²  |  batch $${(matFactTotal*REF_M2).toFixed(0)}  |  ${totalKg.toFixed(0)}kg\n` +
+    `   PVC résine  $${pvc0.toFixed(3)}/kg × 75kg   = $${(pvc0*75/REF_M2).toFixed(3)}/M²\n` +
+    `   CaCO3       $${caco.toFixed(4)}/kg × 225kg  = $${(caco*225/REF_M2).toFixed(3)}/M²\n` +
+    `   Recyclé     $${rPrice}/kg × ${rKg}kg        = $${rPM2.toFixed(3)}/M²\n` +
+    `③ COUCHES SUPÉRIEURES     $${layersTotal.toFixed(3)}/M²\n` +
+    `④ FABRICATION+FINITION    $${processTotal.toFixed(3)}/M²  (UV + IXPE + Découpe)\n` +
+    `⑤ EMBALLAGE+USURE         $${packTotal.toFixed(3)}/M²\n` +
+    `⑥ LABOR PRODUCTION        $${laborPM2.toFixed(3)}/M²  (${lWorkers} op × $${lSalary}/mois ÷ ${lBatches} batches)\n` +
+    `⑥ ÉLECTRICITÉ             $${elecPM2.toFixed(3)}/M²  (${eKwh} kWh × $${ePrice}/kWh)\n` +
+    `─────────────────────────────────────────────\n` +
+    `   TON USINE  $${grandFact.toFixed(3)}/M²   vs   RÉFÉRENCE  $${grandRef.toFixed(3)}/M²\n` +
+    `   ÉCART      ${diff >= 0 ? '+' : ''}$${diff.toFixed(3)}/M²  (${diff >= 0 ? 'plus cher' : 'moins cher'} de $${abs}/M² vs CN/VN)`;
+}
+
+buildMatTable();
+buildSimpleTable('layers-table',  layers,  'ly');
+buildSimpleTable('process-table', process, 'pr');
+buildSimpleTable('pack-table',    pack,    'pk');
+recalc();
+// footer label update
+document.querySelector('footer').textContent = 'SPC Cost Calculator · v3 Complet · Labor + Électricité · données IMG_9053';
+</script>
+
 </body>
 </html>
